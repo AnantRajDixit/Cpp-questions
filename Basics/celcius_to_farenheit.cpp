@@ -10,6 +10,5 @@ int main(){
     cout<< "when converted in farenheit the value is "<<C*9/5 +32<<endl;
     
     return 0;
-
-
+    
     }
