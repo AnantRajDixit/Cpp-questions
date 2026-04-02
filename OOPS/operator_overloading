@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+class Number {
+    int *value;  // pointer (dynamic memory)
+
+public:
+    // Constructor
+    Number(int val) {
+        value = new int;
+        *value = val;
+    }
+
+    // Assignment Operator Overloading
+    Number& operator=(const Number &obj) {
+
+        // Self-assignment check
+        if (this == &obj)
+            return *this;
+
+        // Free existing memory
+        delete value;
+
+        // Allocate new memory and copy value
+        value = new int;
+        *value = *(obj.value);
+
+        return *this;
+    }
+
+    // Display function
+    void display() {
+        cout << "Value: " << *value << endl;
+    }
+
+    // Destructor
+    ~Number() {
+        delete value;
+    }
+};
+
+int main() {
+    Number n1(10);
+    Number n2(20);
+
+    cout << "Before Assignment:" << endl;
+    n1.display();
+    n2.display();
+
+    // Assignment
+    n2 = n1;
+
+    cout << "\nAfter Assignment:" << endl;
+    n1.display();
+    n2.display();
+
+    return 0;
+}
